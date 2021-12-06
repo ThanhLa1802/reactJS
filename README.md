@@ -30,6 +30,7 @@ Your app is ready to be deployed!
 ## POSTS: View all post from API
 ## PROFILE: view profile user
 ## LOGIN: login and show infor user
+### Use account login: gmail:admin@admin.com  - password:admin123 
 
 ![image](https://user-images.githubusercontent.com/46947782/144750302-bdc6434f-f5a0-4039-ac95-1f08aeb6c96a.png)
 
