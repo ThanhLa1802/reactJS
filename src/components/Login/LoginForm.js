@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-
+import axios from 'axios';
 const validateEmail = (email) => {
   return String(email)
     .toLowerCase()
@@ -13,7 +13,7 @@ const validatePassword = password => {
   return '';
 }
 
-const LoginForm = ({Login}) => {
+const LoginForm = ({setToken, setUserId}) => {
   const [values, setValues] = useState({
     email: '',
     password: ''
@@ -29,8 +29,14 @@ const LoginForm = ({Login}) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log('values ==', values);
-    Login(values);
-   
+    axios({
+      method: "GET",
+      url: "https://60dff0ba6b689e001788c858.mockapi.io/tokens",
+      data: values
+    }).then(({data: {token, userId}}) => {
+      setToken(token);
+      setUserId(userId);
+    })
   };
   
   const handleOnChange = evt => {

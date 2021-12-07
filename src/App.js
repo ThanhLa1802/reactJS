@@ -10,6 +10,7 @@ import {
   Link
 } from "react-router-dom"
 import LoginMain from './components/Login/LoginMain';
+import LoginForm from './components/Login/LoginForm';
 
 function App() {
   const adminUser  = {
@@ -19,6 +20,18 @@ function App() {
 
   const [user, setUser] = useState({email:"", password: ""});
   const [error, setError] = useState("");
+  const [token, setToken] = useState(null);
+  const [userId, setUserId] = useState(null);
+  
+  const getProfileElement = () => {
+    if (userId == null)
+      return (<LoginForm
+                setToken = {setToken}
+                setUserId = {setUserId}
+              />)
+    else
+      return (<Profile/>)
+  }
   const Login = details => {
     console.log(details);
     if (details.email == adminUser.email && details.password == adminUser.password)
@@ -36,7 +49,6 @@ function App() {
   const Logout = () => {
     setUser({name:"", email: ""});
   }
-
   return (
     <BrowserRouter>
       <nav id = "header">
@@ -66,11 +78,13 @@ function App() {
              <Route path="/posts" element={
               <PostsPage/>}/>
             <Route path="/profile" element={
-              <Profile Login = {Login} user = {user} Logout = {Logout}
-              />}
+             getProfileElement()}
             />
             <Route path="/login" element={
-              <LoginMain/>}/>
+              <LoginForm
+                setToken = {setToken}
+                setUserId = {setUserId}
+              />}/>
           </Routes>
           </div>
     </BrowserRouter>

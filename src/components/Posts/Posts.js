@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import './Posts.css';
 //import LanguageContext from '../../contexts/LanguageContext';
 import useGETapi from '../../hooks/useGETapi';
